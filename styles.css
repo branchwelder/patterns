@@ -1,0 +1,63 @@
+html {
+  --black: #282a36;
+  --white: #f8f8f2;
+  --pink: #ff79c6;
+  --red: #ff5555;
+  --orange: #ffad55;
+  --yellow: #f1fa8c;
+  --green: #50fa7b;
+  --cyan: #8be9fd;
+  --blue: #4395d4;
+  --purple: #9674c8;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#toolbar {
+  background-color: var(--black);
+  color: var(--white);
+  font-weight: 900;
+  font-size: large;
+  padding: 5px 7px;
+}
+
+#workspace {
+  display: flex;
+  flex: 1;
+}
+
+#editor-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 50ch;
+}
+
+.editor {
+  min-height: 10%;
+  height: 33.33%;
+  max-height: 100%;
+}
+
+.editor-title {
+  flex: 0 0;
+  font-weight: 900;
+  background-color: var(--black);
+  color: var(--white);
+  font-size: x-small;
+  text-align: right;
+  border-bottom: 1px solid var(--purple);
+  padding: 2px 7px;
+  user-select: none;
+}
+
+#output {
+  flex: 1;
+}
+
+#split-resize {
+  width: 5px;
+  background-color: black;
+}
