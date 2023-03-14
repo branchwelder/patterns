@@ -1,0 +1,22 @@
+{
+  "hoverDropdown": {
+    "html": "<div id=\"navMenu\">\n  <div class=\"entry\">one\n    <div class=\"dropdown\">\n      <div>a</div>\n      <div>b</div>\n      <div>c</div>\n      <div>d</div>\n    </div>\n  </div>\n  <div class=\"entry\">two\n  <div class=\"dropdown\">\n      <div>a</div>\n      <div>b</div>\n      <div>c</div>\n      <div>d</div>\n    </div>\n  </div>\n  <div class=\"entry\">three\n    <div class=\"dropdown\">\n      <div>a</div>\n      <div>b</div>\n      <div>c</div>\n      <div>d</div>\n    </div>\n  </div>\n</div>",
+    "css": "#navMenu {\n  display: flex;\n  justify-content: space-around;\n  background: pink\n}\n\n.entry {\n  cursor: pointer;\n}\n\n.entry:hover {\n  background: deeppink;\n}\n\n.entry:hover .dropdown {\n  display: block;\n  background: deeppink;\n}\n\n.dropdown {\n  position: absolute;\n  display: none;\n}\n\n.dropdown > div {\n  padding: 4px 20px;\n}\n\n.dropdown > div:hover {\n  background: yellow;  \n}\n",
+    "js": ""
+  },
+  "responsiveGrid": {
+    "html": "<div id=\"grid\">\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n</div>",
+    "css": "#grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));\n  gap: 0.5rem;\n  max-width: 500px;\n  margin: auto;\n}\n\n#grid > * {\n  background-color: green;\n  aspect-ratio: 1;\n}",
+    "js": ""
+  },
+  "downloadJSON": {
+    "html": "<button id=\"downBtn\">download</button>",
+    "css": "button {\n  background-color: #4CAF50;\n  border: none;\n  color: white;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  cursor: pointer;\n  border-radius: 5px;\n}\n\nbutton:hover {\n  background-color: #388a3b;\n}",
+    "js": "function downloadJSON() {\n  const el = document.createElement(\"a\");\n  el.href =\n    \"data:text/json;charset=utf-8,\" +\n    encodeURIComponent(JSON.stringify({message: \"this is a test\"}));\n  el.download = \"my-json.json\";\n  document.body.appendChild(el);\n  el.click();\n  document.body.removeChild(el);\n}\n\ndocument.getElementById(\"downBtn\").addEventListener(\"click\", downloadJSON)"
+  },
+  "panZoomBackground": {
+    "html": "<canvas id=\"background\"></canvas>",
+    "css": "html, body {\n  margin: 0;\n}\n\n#background {\n  --grid-size: 50px;\n  --dot: 1px;\n  --background-dots: white;\n  --workspace-background: black;\n  \n  --offset-x: 0px;\n  --offset-y: 0px;\n  --scale: 1;\n\n  background-size: calc(var(--grid-size) * var(--scale, 1))\n    calc(var(--grid-size) * var(--scale, 1));\n  background-image: radial-gradient(\n    circle,\n    var(--background-dots) var(--dot),\n    var(--workspace-background) var(--dot)\n  );\n  background-position: var(--offset-x, 0) var(--offset-y, 0);\n  width: 100%;\n  height: 100%;\n  position: fixed;\n}",
+    "js": "let background = document.getElementById(\"background\");\n\nbackground.addEventListener(\"pointerdown\", startPan);\nbackground.addEventListener(\"pointermove\", pan)\nbackground.addEventListener(\"pointerup\", endPan)\nbackground.addEventListener(\"wheel\", zoom)\n\n\nlet mousedown = false;\nlet scale = 1;\nlet pointX = 0;\nlet pointY = 0;\nlet start = { x: 0, y: 0 };\n\nfunction update() {\n  background.style.setProperty(\"--scale\", scale);\n  background.style.setProperty(\"--offset-x\", `${pointX}px`);\n  background.style.setProperty(\"--offset-y\", `${pointY}px`);\n}\n\nfunction startPan(e) {\n  mousedown = true;\n  start = { x: e.offsetX - pointX, y: e.offsetY - pointY };\n};\n\nfunction zoom(e) {\n  let xs = (e.offsetX - pointX) / scale;\n  let ys = (e.offsetY - pointY) / scale;\n\n  if (Math.sign(e.deltaY) < 0) scale *= 1.03;\n  else scale /= 1.03;\n\n  pointX = e.offsetX - xs * scale;\n  pointY = e.offsetY - ys * scale;\n\n  update();\n}\n\nfunction pan(e) {\n  if (!mousedown) return;\n\n  pointX = e.offsetX - start.x;\n  pointY = e.offsetY - start.y;\n\n  update();\n};\n\nfunction endPan() {\n  mousedown = false;\n}\n"
+  }
+}

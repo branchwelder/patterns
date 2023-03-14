@@ -1,5 +1,6 @@
 html {
   --black: #282a36;
+  --inactive: #808391;
   --white: #f8f8f2;
   --pink: #ff79c6;
   --red: #ff5555;
@@ -13,51 +14,150 @@ html {
 
 body {
   display: flex;
-  flex-direction: column;
+  overflow: hidden;
+  font-family: monospace;
 }
 
 #toolbar {
-  background-color: var(--black);
   color: var(--white);
   font-weight: 900;
-  font-size: large;
-  padding: 5px 7px;
+  padding: 3px 0px 3px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
 }
 
-#workspace {
+#icons {
+  color: var(--inactive);
   display: flex;
-  flex: 1;
+  align-items: center;
+  position: relative;
+}
+
+i:hover {
+  color: var(--pink);
+  cursor: pointer;
+}
+
+#pattern-dropdown {
+  z-index: 100;
+  display: none;
+  position: absolute;
+  font-size: small;
+  font-weight: 400;
+  font-family: monospace;
+  background-color: var(--black);
+  right: 0;
+  color: var(--white);
+  flex-direction: column;
+  align-items: end;
+  padding: 3px;
+  border: 1px solid var(--pink);
+  border-radius: 5px;
+}
+
+#pattern-dropdown > div {
+  width: 100%;
+  padding: 3px;
+  text-align: end;
+  border-radius: 3px;
+}
+
+#pattern-dropdown > div:hover {
+  background-color: #3e404c;
+}
+
+#pattern-icon:hover #pattern-dropdown {
+  display: flex;
 }
 
 #editor-container {
   display: flex;
   flex-direction: column;
-  min-width: 50ch;
+  background-color: var(--black);
+  padding: 0 0 5px 5px;
 }
 
 .editor {
-  min-height: 10%;
-  height: 33.33%;
-  max-height: 100%;
+  display: flex;
 }
 
 .editor-title {
-  flex: 0 0;
-  font-weight: 900;
-  background-color: var(--black);
-  color: var(--white);
-  font-size: x-small;
-  text-align: right;
-  border-bottom: 1px solid var(--purple);
-  padding: 2px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   user-select: none;
+  position: relative;
+}
+
+.editor-title > span {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  font-weight: 900;
+  font-size: smaller;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: var(--color);
+  padding: 5px 0px;
+}
+.editor-title > i {
+  color: var(--inactive);
+}
+
+.editor-title > i:hover {
+  color: var(--color);
+}
+
+#html-container,
+#js-container,
+#css-container {
+  flex: 1;
+  border: 1px solid var(--color);
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  overflow-x: auto;
 }
 
 #output {
+  display: flex;
+}
+
+.success .copied {
+  visibility: visible;
+  opacity: 1;
+  transition: none;
+}
+
+.copied {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+  z-index: 100;
+  position: absolute;
+  left: 100%;
+  background-color: var(--color);
+  color: var(--black);
+  font-family: monospace;
+  padding: 5px;
+  border-radius: 5px;
+  line-height: normal;
+}
+
+iframe {
+  border: none;
   flex: 1;
 }
 
-#split-resize {
-  width: 5px;
-  background-color: black;
+.gutter {
+  background-color: var(--black);
+}
+
+.gutter-horizontal {
+  cursor: col-resize;
+}
+
+.gutter-vertical {
+  cursor: row-resize;
 }
