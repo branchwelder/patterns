@@ -4,7 +4,7 @@
     "host": "vite --host",
     "build": "vite build",
     "preview": "vite build && vite preview",
-    "deploy": "vite build --base=/patterns/ && gh-pages -d dist"
+    "deploy": "vite build --base=/snippets/ && gh-pages -d dist"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.4.2",
