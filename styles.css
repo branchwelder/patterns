@@ -18,6 +18,26 @@ body {
   font-family: monospace;
 }
 
+#editor-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black);
+  padding: 0 0 5px 5px;
+}
+
+/* OUTPUT AND IFRAME */
+
+#output {
+  display: flex;
+}
+
+iframe {
+  border: none;
+  flex: 1;
+}
+
+/* TOOLBAR STYLES */
+
 #toolbar {
   color: var(--white);
   font-weight: 900;
@@ -72,11 +92,16 @@ i:hover {
   display: flex;
 }
 
-#editor-container {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--black);
-  padding: 0 0 5px 5px;
+/* EDITOR STYLES */
+
+#html-container,
+#js-container,
+#css-container {
+  flex: 1;
+  border: 1px solid var(--color);
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  overflow-x: auto;
 }
 
 .editor {
@@ -110,19 +135,30 @@ i:hover {
   color: var(--color);
 }
 
-#html-container,
-#js-container,
-#css-container {
-  flex: 1;
-  border: 1px solid var(--color);
-  border-radius: 5px;
-  border-top-left-radius: 0;
-  overflow-x: auto;
+/* EDITOR SCROLLBARS */
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: blue var(--color);
 }
 
-#output {
-  display: flex;
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
+
+*::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color);
+  border: none;
+}
+
+/* COPIED SUCCESS POPUP */
 
 .success .copied {
   visibility: visible;
@@ -145,10 +181,7 @@ i:hover {
   line-height: normal;
 }
 
-iframe {
-  border: none;
-  flex: 1;
-}
+/* SPLIT PANE GUTTERS */
 
 .gutter {
   background-color: var(--black);

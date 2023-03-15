@@ -182,6 +182,7 @@ function init() {
     minSize: 0,
     direction: "vertical",
     gutterSize: 7,
+    expandToMin: true,
   });
 
   Split(["#editor-container", "#output"], { gutterSize: 7 });

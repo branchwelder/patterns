@@ -18,5 +18,15 @@
     "html": "<canvas id=\"background\"></canvas>",
     "css": "html, body {\n  margin: 0;\n}\n\n#background {\n  --grid-size: 50px;\n  --dot: 1px;\n  --background-dots: white;\n  --workspace-background: black;\n  \n  --offset-x: 0px;\n  --offset-y: 0px;\n  --scale: 1;\n\n  background-size: calc(var(--grid-size) * var(--scale, 1))\n    calc(var(--grid-size) * var(--scale, 1));\n  background-image: radial-gradient(\n    circle,\n    var(--background-dots) var(--dot),\n    var(--workspace-background) var(--dot)\n  );\n  background-position: var(--offset-x, 0) var(--offset-y, 0);\n  width: 100%;\n  height: 100%;\n  position: fixed;\n}",
     "js": "let background = document.getElementById(\"background\");\n\nbackground.addEventListener(\"pointerdown\", startPan);\nbackground.addEventListener(\"pointermove\", pan)\nbackground.addEventListener(\"pointerup\", endPan)\nbackground.addEventListener(\"wheel\", zoom)\n\n\nlet mousedown = false;\nlet scale = 1;\nlet pointX = 0;\nlet pointY = 0;\nlet start = { x: 0, y: 0 };\n\nfunction update() {\n  background.style.setProperty(\"--scale\", scale);\n  background.style.setProperty(\"--offset-x\", `${pointX}px`);\n  background.style.setProperty(\"--offset-y\", `${pointY}px`);\n}\n\nfunction startPan(e) {\n  mousedown = true;\n  start = { x: e.offsetX - pointX, y: e.offsetY - pointY };\n};\n\nfunction zoom(e) {\n  let xs = (e.offsetX - pointX) / scale;\n  let ys = (e.offsetY - pointY) / scale;\n\n  if (Math.sign(e.deltaY) < 0) scale *= 1.03;\n  else scale /= 1.03;\n\n  pointX = e.offsetX - xs * scale;\n  pointY = e.offsetY - ys * scale;\n\n  update();\n}\n\nfunction pan(e) {\n  if (!mousedown) return;\n\n  pointX = e.offsetX - start.x;\n  pointY = e.offsetY - start.y;\n\n  update();\n};\n\nfunction endPan() {\n  mousedown = false;\n}\n"
+  },
+  "styledScrollbar": {
+    "html": "<div class=\"content\"></div>",
+    "css": ".content {\n  background: pink;\n  height: 200vh;\n}\n\n/* Works on Firefox */\n* {\n  scrollbar-width: thin;\n  scrollbar-color: blue orange;\n}\n\n/* Works on Chrome, Edge, and Safari */\n*::-webkit-scrollbar {\n  width: 12px;\n}\n\n*::-webkit-scrollbar-track {\n  background: orange;\n}\n\n*::-webkit-scrollbar-thumb {\n  background-color: blue;\n  border-radius: 20px;\n  border: 3px solid orange;\n}\n",
+    "js": ""
+  },
+  "gridWithBorder": {
+    "html": "<div id=\"grid\">\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n  <div></div>\n</div>",
+    "css": "#grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));\n  padding: 1px;\n  gap: 1px;\n  max-width: 500px;\n  margin: auto;\n  background: black;\n}\n\n#grid > * {\n  background: white;\n  aspect-ratio: 1;\n}",
+    "js": ""
   }
 }
