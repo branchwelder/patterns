@@ -173,6 +173,7 @@ i:hover {
   z-index: 100;
   position: absolute;
   left: 100%;
+  /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
   background-color: var(--color);
   color: var(--black);
   font-family: monospace;

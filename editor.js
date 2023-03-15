@@ -14,11 +14,15 @@ import {
   foldGutter,
   indentOnInput,
   syntaxHighlighting,
-  defaultHighlightStyle,
   bracketMatching,
   foldKeymap,
 } from "@codemirror/language";
-import { history, defaultKeymap, historyKeymap } from "@codemirror/commands";
+import {
+  history,
+  defaultKeymap,
+  historyKeymap,
+  indentWithTab,
+} from "@codemirror/commands";
 import {
   closeBrackets,
   autocompletion,
@@ -26,7 +30,8 @@ import {
   completionKeymap,
 } from "@codemirror/autocomplete";
 import { lintKeymap } from "@codemirror/lint";
-import { dracula } from "thememirror";
+
+import { draculaTheme, draculaHighlightStyle } from "./editorTheme";
 
 export const editorSetup = (() => [
   lineNumbers(),
@@ -38,14 +43,14 @@ export const editorSetup = (() => [
   dropCursor(),
   EditorState.allowMultipleSelections.of(true),
   indentOnInput(),
-  syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
+  syntaxHighlighting(draculaHighlightStyle, { fallback: true }),
   bracketMatching(),
   closeBrackets(),
   autocompletion(),
   rectangularSelection(),
   crosshairCursor(),
   highlightActiveLine(),
-  dracula,
+  draculaTheme,
   keymap.of([
     ...closeBracketsKeymap,
     ...defaultKeymap,
@@ -53,5 +58,6 @@ export const editorSetup = (() => [
     ...foldKeymap,
     ...completionKeymap,
     ...lintKeymap,
+    indentWithTab,
   ]),
 ])();

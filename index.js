@@ -12,7 +12,7 @@ import snippets from "./snippets.json";
 
 let htmlView, cssView, jsView;
 
-let snippet = snippets["downloadJSON"];
+let snippet = snippets["panZoomBackground"];
 
 function copyCode(e, lang) {
   navigator.clipboard.writeText(snippet[lang]);

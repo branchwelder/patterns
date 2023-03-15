@@ -8,8 +8,14 @@
 - [x] snippet dropdown
 - [x] copy button
 - [x] better scrollbars
-- [ ] fix tab
+- [x] tab indent
 - [ ] iframe refresh timeout
 - [ ] output console
-- [ ] double click editor panel title to expand/collapse
 - [ ] save editor state with snippet
+- [ ] firebase auth to make it easier to save snippets
+
+UI tweaks
+
+- [x] custom codemirror theme
+- [ ] double click editor panel title to expand/collapse
+- [ ] drag to rearrange panels
