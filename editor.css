@@ -1,3 +1,7 @@
 .cm-editor.cm-focused {
   outline: none;
 }
+
+.cm-editor {
+  height: 100%;
+}

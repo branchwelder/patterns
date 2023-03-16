@@ -16,8 +16,25 @@ const dracula = {
   comment: "#6272A4",
   darkBackground: "#21222c",
   highlightBackground: "#44475A",
-  tooltipBackground: "",
   numbers: "#3f5d9d",
+  cursor: "#528bff",
+};
+
+const nord = {
+  red: "#BF616A",
+  orange: "#D08770",
+  yellow: "#EBCB8B",
+  green: "#A3BE8C",
+  purple: "#B48EAD",
+  cyan: "#88C0D0",
+  pink: "#B48EAD",
+  background: "#2E3440",
+  foreground: "#ECEFF4",
+  selection: "#434C5E",
+  comment: "#6272A4",
+  darkBackground: "#2E3440",
+  highlightBackground: "#4C566A",
+  numbers: "#5E81AC",
   cursor: "#528bff",
 };
 
@@ -189,5 +206,7 @@ function makeHighlightStyle(theme) {
 }
 
 export const draculaTheme = makeTheme(dracula);
-
 export const draculaHighlightStyle = makeHighlightStyle(dracula);
+
+export const nordTheme = makeTheme(nord);
+export const nordHighlightStyle = makeHighlightStyle(nord);
