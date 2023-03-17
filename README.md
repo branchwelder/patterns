@@ -1,4 +1,9 @@
-# patterns
+# Snippets
+
+This is a little live editor for me to keep common code snippets around, similar
+to codepen or jsfiddle. See it live [here](https://twigg.gg/snippets/).
+
+## todo
 
 - [x] split pane editors
 - [x] resizable panes
